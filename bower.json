@@ -1,0 +1,19 @@
+{
+  "name": "AutioFrontend",
+  "version": "0.0.1",
+  "authors": [
+    "Kasey Cowley <kchunterdeluxe@gmail.com>"
+  ],
+  "description": "The frontend of the Autio vehicle maintenance app",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
