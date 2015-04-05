@@ -1,0 +1,238 @@
+{
+  vehicles: [
+    {
+      id: 1,
+      year: 1981,
+      mileage: 166225,
+      vin: "54i1zkj25t02tec0b",
+      links: {
+        make: {
+          id: 2,
+          name: "aliquam",
+          href: "http://api.autio.local/v1/makes/2"
+        },
+        model: {
+          id: 5,
+          name: "eius",
+          href: "http://api.autio.local/v1/models/5"
+        }
+      }
+    },
+    {
+      id: 2,
+      year: 1975,
+      mileage: 10529,
+      vin: "10g9maf29x50ekd7p",
+      links: {
+        make: {
+          id: 1,
+          name: "nemo",
+          href: "http://api.autio.local/v1/makes/1"
+        },
+        model: {
+          id: 2,
+          name: "autem",
+          href: "http://api.autio.local/v1/models/2"
+        }
+      }
+    },
+    {
+      id: 3,
+      year: 1974,
+      mileage: 123779,
+      vin: "33e5ixr24n29wpt8e",
+      links: {
+        make: {
+          id: 1,
+          name: "nemo",
+          href: "http://api.autio.local/v1/makes/1"
+        },
+        model: {
+          id: 8,
+          name: "corrupti",
+          href: "http://api.autio.local/v1/models/8"
+        }
+      }
+    },
+    {
+      id: 4,
+      year: 2005,
+      mileage: 130671,
+      vin: "01u6vcw92h36wlr3j",
+      links: {
+        make: {
+          id: 5,
+          name: "deleniti",
+          href: "http://api.autio.local/v1/makes/5"
+        },
+        model: {
+          id: 4,
+          name: "sit",
+          href: "http://api.autio.local/v1/models/4"
+        }
+      }
+    },
+    {
+      id: 5,
+      year: 1970,
+      mileage: 118483,
+      vin: "67s0enk30i94xjn3j",
+      links: {
+        make: {
+          id: 5,
+          name: "deleniti",
+          href: "http://api.autio.local/v1/makes/5"
+        },
+        model: {
+          id: 4,
+          name: "sit",
+          href: "http://api.autio.local/v1/models/4"
+        }
+      }
+    },
+    {
+      id: 6,
+      year: 2012,
+      mileage: 156466,
+      vin: "63b2sty15m19rtn2z",
+      links: {
+        make: {
+          id: 5,
+          name: "deleniti",
+          href: "http://api.autio.local/v1/makes/5"
+        },
+        model: {
+          id: 4,
+          name: "sit",
+          href: "http://api.autio.local/v1/models/4"
+        }
+      }
+    },
+    {
+      id: 7,
+      year: 1981,
+      mileage: 147131,
+      vin: "58s6yjb76d52kwd9a",
+      links: {
+        make: {
+          id: 1,
+          name: "nemo",
+          href: "http://api.autio.local/v1/makes/1"
+        },
+        model: {
+          id: 8,
+          name: "corrupti",
+          href: "http://api.autio.local/v1/models/8"
+        }
+      }
+    },
+    {
+      id: 8,
+      year: 2001,
+      mileage: 102495,
+      vin: "08u6yro41k31bdh8v",
+      links: {
+        make: {
+          id: 1,
+          name: "nemo",
+          href: "http://api.autio.local/v1/makes/1"
+        },
+        model: {
+          id: 2,
+          name: "autem",
+          href: "http://api.autio.local/v1/models/2"
+        }
+      }
+    },
+    {
+      id: 9,
+      year: 1989,
+      mileage: 22753,
+      vin: "09l6csj17k95uqb6t",
+      links: {
+        make: {
+          id: 4,
+          name: "accusantium",
+          href: "http://api.autio.local/v1/makes/4"
+        },
+        model: {
+          id: 3,
+          name: "sed",
+          href: "http://api.autio.local/v1/models/3"
+        }
+      }
+    },
+    {
+      id: 10,
+      year: 2003,
+      mileage: 40249,
+      vin: "09s9aaz37b60fhp0h",
+      links: {
+        make: {
+          id: 4,
+          name: "accusantium",
+          href: "http://api.autio.local/v1/makes/4"
+        },
+        model: {
+          id: 3,
+          name: "sed",
+          href: "http://api.autio.local/v1/models/3"
+        }
+      }
+    },
+    {
+      id: 11,
+      year: 1987,
+      mileage: 147185,
+      vin: "35e6vev27c85urn9d",
+      links: {
+        make: {
+          id: 3,
+          name: "laudantium",
+          href: "http://api.autio.local/v1/makes/3"
+        },
+        model: {
+          id: 6,
+          name: "itaque",
+          href: "http://api.autio.local/v1/models/6"
+        }
+      }
+    },
+    {
+      id: 12,
+      year: 1998,
+      mileage: 123000,
+      vin: "1234",
+      links: {
+        make: {
+          id: 2,
+          name: "aliquam",
+          href: "http://api.autio.local/v1/makes/2"
+        },
+        model: {
+          id: 5,
+          name: "eius",
+          href: "http://api.autio.local/v1/models/5"
+        }
+      }
+    },
+    {
+      id: 13,
+      year: 1998,
+      mileage: 12345,
+      vin: "12345678901234567",
+      links: {
+        make: {
+          id: 1,
+          name: "nemo",
+          href: "http://api.autio.local/v1/makes/1"
+        },
+        model: {
+          id: 1,
+          name: "qui",
+          href: "http://api.autio.local/v1/models/1"
+        }
+      }
+    }
+  ]
+}
