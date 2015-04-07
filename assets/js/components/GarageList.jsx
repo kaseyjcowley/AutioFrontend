@@ -1,4 +1,4 @@
-var React = require('React');
+var React = require('react');
 
 var randomInt = function (min, max) {
   return Math.floor(Math.random() * max + min);
@@ -6,7 +6,6 @@ var randomInt = function (min, max) {
 
 /**
  * Main GarageList node, uses Bootstrap's list-group
- * TODO: this.props.vehicles data from api.autio.local
  *
  * @author Kasey C.
  */
@@ -31,8 +30,8 @@ var GarageList = React.createClass({
     if (this.state.filterText !== '') {
 
       vehicles = vehicles.filter(function (vehicle) {
-        var makeName  = vehicle.links.make.name;
-        var modelName = vehicle.links.model.name;
+        var makeName   = vehicle.links.make.name;
+        var modelName  = vehicle.links.model.name;
         var filterText = this.state.filterText;
 
         return makeName.indexOf(filterText) !== -1 || modelName.indexOf(filterText) !== -1;
@@ -46,7 +45,7 @@ var GarageList = React.createClass({
     });
 
     return (
-      <div>
+      <div className="col-lg-8">
         <GarageList.SearchBar filterText={this.state.filterText} onUserInput={this.filterList}/>
         <ul className="list-group">
           {rows}
@@ -65,11 +64,9 @@ var GarageList = React.createClass({
  */
 GarageList.SearchBar = React.createClass({
 
-  handleChange: function () {
+  handleChange: function (event) {
     // onUserInput is exposed to us from the parent component, so we can call it in our own component.
-    this.props.onUserInput(
-      this.refs.filterTextInput.getDOMNode().value
-    );
+    this.props.onUserInput(event.target.value);
   },
 
   render: function () {
@@ -80,7 +77,6 @@ GarageList.SearchBar = React.createClass({
                  placeholder="Filter vehicles..."
                  className="form-control"
                  value={this.props.filterText}
-                 ref="filterTextInput"
                  onChange={this.handleChange}/>
         </div>
       </form>
