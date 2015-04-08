@@ -99,7 +99,7 @@ GarageList.Vehicle = React.createClass({
     var model   = vehicle.links.model;
 
     return (
-      <a className="list-group-item">
+      <a className="list-group-item" href={'/#vehicles/' + vehicle.id}>
         <span className="badge progress-bar-danger">{randomInt(1, 10)}</span>
         <h4 className="list-group-item-heading">
           {vehicle.year} {make.name} {model.name}
