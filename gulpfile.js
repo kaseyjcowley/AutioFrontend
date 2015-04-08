@@ -1,3 +1,4 @@
+
 var gulp        = require('gulp');
 var react       = require('reactify');
 var concat      = require('gulp-concat');
@@ -82,3 +83,5 @@ gulp.task('serve:minified', ['clean', 'lint', 'js:min', 'server'], function () {
     ['lint', 'js:min', browserSync.reload]
   );
 });
+
+gulp.task('default', ['serve']);
