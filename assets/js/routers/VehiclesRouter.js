@@ -1,10 +1,10 @@
-var Backbone          = require('backbone');
-var React             = require('react');
-var $                 = require('jquery');
-var _                 = require('lodash');
-var VehicleCollection = require('../collections/VehicleCollection');
-var GarageList        = require('../components/GarageList.jsx');
-var SingleVehicle     = require('../components/SingleVehicle.jsx');
+var Backbone          = require("backbone");
+var React             = require("react");
+var $                 = require("jquery");
+var _                 = require("lodash");
+var VehicleCollection = require("../collections/VehicleCollection");
+var GarageList        = require("../components/GarageList");
+var SingleVehicle     = require("../components/SingleVehicle");
 
 Backbone.$ = $;
 

@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require("react");
 
 var randomInt = function (min, max) {
   return Math.floor(Math.random() * max + min);
@@ -13,34 +13,31 @@ var GarageList = React.createClass({
 
   getInitialState: function () {
     return {
-      filterText: ''
+      filterText: "",
+      renderVehicles: this.props.vehicles
     };
   },
 
-  filterList: function (filterText) {
-    this.setState({
-      filterText: filterText
+  filterList: function (event) {
+
+    var filterText = event.target.value;
+    var vehicles = this.props.vehicles.filter(function (vehicle) {
+      var makeName   = vehicle.links.make.name;
+      var modelName  = vehicle.links.model.name;
+
+      return makeName.indexOf(filterText) !== -1 || modelName.indexOf(filterText) !== -1;
     });
+
+    this.setState({
+      filterText: filterText,
+      renderVehicles: vehicles
+    });
+
   },
 
   render: function () {
-    var vehicles = this.props.vehicles;
 
-    // If we are trying to filter the list, we filter out the results in the array based on make/model.
-    if (this.state.filterText !== '') {
-
-      vehicles = vehicles.filter(function (vehicle) {
-        var makeName   = vehicle.links.make.name;
-        var modelName  = vehicle.links.model.name;
-        var filterText = this.state.filterText;
-
-        return makeName.indexOf(filterText) !== -1 || modelName.indexOf(filterText) !== -1;
-      }, this);
-
-    }
-
-    // Take the resulting vehicles array and turn it into a React component
-    var rows = vehicles.map(function (vehicle) {
+    var rows = this.state.renderVehicles.map(function (vehicle) {
       return <GarageList.Vehicle key={vehicle.id} vehicle={vehicle}/>;
     });
 
@@ -64,11 +61,6 @@ var GarageList = React.createClass({
  */
 GarageList.SearchBar = React.createClass({
 
-  handleChange: function (event) {
-    // onUserInput is exposed to us from the parent component, so we can call it in our own component.
-    this.props.onUserInput(event.target.value);
-  },
-
   render: function () {
     return (
       <form>
@@ -77,7 +69,7 @@ GarageList.SearchBar = React.createClass({
                  placeholder="Filter vehicles..."
                  className="form-control"
                  value={this.props.filterText}
-                 onChange={this.handleChange}/>
+                 onChange={this.props.onUserInput}/>
         </div>
       </form>
     );
@@ -99,7 +91,7 @@ GarageList.Vehicle = React.createClass({
     var model   = vehicle.links.model;
 
     return (
-      <a className="list-group-item" href={'/#vehicles/' + vehicle.id}>
+      <a className="list-group-item" href={"/#vehicles/" + vehicle.id}>
         <span className="badge progress-bar-danger">{randomInt(1, 10)}</span>
         <h4 className="list-group-item-heading">
           {vehicle.year} {make.name} {model.name}
