@@ -1,4 +1,5 @@
 var React = require("react");
+var _     = require("lodash");
 
 var randomInt = function (min, max) {
   return Math.floor(Math.random() * max + min);
@@ -6,46 +7,47 @@ var randomInt = function (min, max) {
 
 /**
  * Main GarageList node, uses Bootstrap's list-group
- *
- * @author Kasey C.
  */
 var GarageList = React.createClass({
 
   getInitialState: function () {
     return {
       filterText: "",
-      renderVehicles: this.props.vehicles
+      filteredVehicles: []
     };
   },
 
   filterList: function (event) {
 
-    var filterText = event.target.value;
-    var vehicles = this.props.vehicles.filter(function (vehicle) {
-      var makeName   = vehicle.links.make.name;
-      var modelName  = vehicle.links.model.name;
+    var filterText       = event.target.value;
+    var filteredVehicles = _.filter(this.props.vehicles, function (vehicle) {
+      var makeName  = vehicle.links.make.name;
+      var modelName = vehicle.links.model.name;
 
       return makeName.indexOf(filterText) !== -1 || modelName.indexOf(filterText) !== -1;
     });
 
     this.setState({
       filterText: filterText,
-      renderVehicles: vehicles
+      filteredVehicles: filteredVehicles
     });
 
   },
 
-  render: function () {
+  getVehiclesToDisplay: function () {
+    var vehicles = this.state.filteredVehicles.length !== 0 ? this.state.filteredVehicles : this.props.vehicles;
 
-    var rows = this.state.renderVehicles.map(function (vehicle) {
+    return _.map(vehicles, function (vehicle) {
       return <GarageList.Vehicle key={vehicle.id} vehicle={vehicle}/>;
     });
+  },
 
+  render: function () {
     return (
       <div className="col-lg-8">
         <GarageList.SearchBar filterText={this.state.filterText} onUserInput={this.filterList}/>
         <ul className="list-group">
-          {rows}
+          {this.getVehiclesToDisplay()}
         </ul>
       </div>
     );
@@ -56,8 +58,6 @@ var GarageList = React.createClass({
 /**
  * Search bar goodness! When typing in the input, React auto updates the list
  * of vehicles that match that description. First by make, then model.
- *
- * @author Kasey C.
  */
 GarageList.SearchBar = React.createClass({
 
@@ -80,8 +80,6 @@ GarageList.SearchBar = React.createClass({
 /**
  * Vehicle node for GarageList
  * Displays the data for each vehicle
- *
- * @author Kasey C.
  */
 GarageList.Vehicle = React.createClass({
 

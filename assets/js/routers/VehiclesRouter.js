@@ -2,7 +2,6 @@ var Backbone          = require("backbone");
 var React             = require("react");
 var $                 = require("jquery");
 var _                 = require("lodash");
-var VehicleCollection = require("../collections/VehicleCollection");
 var GarageList        = require("../components/GarageList");
 var SingleVehicle     = require("../components/SingleVehicle");
 
@@ -11,23 +10,25 @@ Backbone.$ = $;
 var VehiclesRouter = Backbone.Router.extend({
 
   collection: null,
+  collectionIsLoaded: false,
 
   routes: {
     "vehicles": "vehicles",   // #vehicles
     "vehicles/:id": "vehicle" // #vehicles/1
   },
 
-  execute: function (callback, params) {
-    // If we have data, just go ahead and call the callback method
-    if (this.collection !== null)
-      return callback.apply(this, params);
+  initialize: function (collection) {
+    this.collection = collection;
+  },
 
-    // Create a new vehicle collection and fetch the data
-    // TODO: Potentially decouple this relationship and pass in the vehicle collection as a param
-    this.collection = new VehicleCollection();
+  execute: function (callback, params) {
+    if (this.collectionIsLoaded)
+      return callback.apply(this, params);
 
     this.collection.fetch({
       success: function () {
+        this.collectionIsLoaded = true;
+
         callback.apply(this, params);
       }.bind(this)
     });

@@ -6,6 +6,7 @@ var eslint      = require('gulp-eslint');
 var del         = require('del');
 var browserify  = require('browserify');
 var watchify    = require('watchify');
+var notify      = require("gulp-notify");
 var browserSync = require('browser-sync');
 var source      = require('vinyl-source-stream');
 var reload      = browserSync.reload;
@@ -33,7 +34,8 @@ gulp.task('lint', function () {
   return gulp.src(paths.js)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failOnError());
+    .pipe(eslint.failOnError())
+    .pipe(notify("ESLint found warnings/errors!"));
 });
 
 gulp.task('browserify', function () {
@@ -47,15 +49,15 @@ gulp.task('browserify', function () {
   var watcher = watchify(bundler);
 
   return watcher.on('update', function () {
-    var updateStart = Date.now();
+    gulp.run('lint');
 
-    console.log('Updating!');
+    var updateStart = Date.now();
 
     watcher.bundle()
       .pipe(source(dest.app))
       .pipe(gulp.dest(dest.dist));
 
-    console.log('Done updating!', (Date.now() - updateStart) + 'ms');
+    console.log('Browserify finished after', (Date.now() - updateStart) + 'ms');
   })
     .bundle()
     .pipe(source(dest.app))
@@ -63,7 +65,7 @@ gulp.task('browserify', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(paths.js, ['browserify']);
+  gulp.watch(paths.js, ['lint', 'browserify']);
 });
 
 gulp.task('default', ['clean', 'lint', 'browserify', 'watch']);
