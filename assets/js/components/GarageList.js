@@ -20,7 +20,8 @@ var GarageList = React.createClass({
   filterList: function (event) {
 
     var filterText       = event.target.value;
-    var filteredVehicles = _.filter(this.props.vehicles, function (vehicle) {
+    var filteredVehicles = _.filter(this.props.vehicleModels, function (vehicleModel) {
+      var vehicle   = vehicleModel.attributes;
       var makeName  = vehicle.links.make.name;
       var modelName = vehicle.links.model.name;
 
@@ -35,10 +36,10 @@ var GarageList = React.createClass({
   },
 
   getVehiclesToDisplay: function () {
-    var vehicles = this.state.filteredVehicles.length !== 0 ? this.state.filteredVehicles : this.props.vehicles;
+    var vehicles = this.state.filteredVehicles.length !== 0 ? this.state.filteredVehicles : this.props.vehicleModels;
 
     return _.map(vehicles, function (vehicle) {
-      return <GarageList.Vehicle key={vehicle.id} vehicle={vehicle}/>;
+      return <GarageList.Vehicle key={vehicle.id} vehicle={vehicle.attributes}/>;
     });
   },
 

@@ -5,7 +5,7 @@ var React = require("react");
 var SingleVehicle = React.createClass({
 
   render: function () {
-    var vehicle = this.props.vehicle;
+    var vehicle = this.props.vehicleModel.attributes;
     var make    = vehicle.links.make;
     var model   = vehicle.links.model;
 

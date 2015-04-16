@@ -1,7 +1,6 @@
 var Backbone          = require("backbone");
 var React             = require("react");
 var $                 = require("jquery");
-var _                 = require("lodash");
 var GarageList        = require("../components/GarageList");
 var SingleVehicle     = require("../components/SingleVehicle");
 
@@ -30,27 +29,23 @@ var VehiclesRouter = Backbone.Router.extend({
         this.collectionIsLoaded = true;
 
         callback.apply(this, params);
-      }.bind(this)
+      }.bind(this),
+
+      error: function () {
+        alert("Whoops! Something went wrong...");
+        this.navigate("/");
+      }
     });
   },
 
   vehicles: function () {
-    // TODO: Passing in model.attributes...or the actual Backbone model instance?
-    var data = _.map(this.collection.models, function (model) {
-      return model.attributes;
-    });
-
-    // TODO: Better to fetch vehicles...then render component -OR- on component mount, fetch data, set state
-    React.render(React.createElement(GarageList, { vehicles: data }), document.body);
-    // TODO: Implement graceful failure of server-loaded data
-    // TODO: Implement localStorage caching
+    React.render(React.createElement(GarageList, { vehicleModels: this.collection.models }), document.body);
   },
 
   vehicle: function (id) {
-    var vehicle = this.collection.get(id).attributes;
+    var vehicle = this.collection.get(id);
 
-    // Render the single vehicle view
-    React.render(React.createElement(SingleVehicle, { vehicle: vehicle }), document.body);
+    React.render(React.createElement(SingleVehicle, { vehicleModel: vehicle }), document.body);
   }
 
 });
