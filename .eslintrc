@@ -3,6 +3,12 @@
     "jsx": true
   },
 
+  "parser": "babel-eslint",
+
+  "plugins": [
+    "react"
+  ],
+
   "rules": {
     "no-new": 0,
     "no-multi-spaces": 0,
@@ -11,7 +17,18 @@
     "quotes": [1, "double"],
     "semi": [2, "always"],
     "curly": [2, "multi"],
-    "no-unused-vars": [1, {"vars": "all", "args": "all"}]
+    "no-unused-vars": [1, {"vars": "all", "args": "all"}],
+
+    "react/display-name": 0,
+    "react/jsx-uses-react": 1,
+    "react/no-did-mount-set-state": 1,
+    "react/no-did-update-set-state": 1,
+    "react/no-multi-comp": 1,
+    "react/prop-types": [1, { ignore: [children, className] }],
+    "react/react-in-jsx-scope": 1,
+    "react/self-closing-comp": 1,
+    "react/wrap-multilines": 1,
+    "react/jsx-uses-vars": 1
   },
 
   "env": {
