@@ -1,14 +1,21 @@
-var React = require("react");
-var _     = require("lodash");
+var React    = require("react");
+var _        = require("lodash");
+var Backbone = require("backbone");
 
 var randomInt = function (min, max) {
   return Math.floor(Math.random() * max + min);
 };
 
+// TODO: Determine if there are any anti-patterns with passing props that have been used and don't need to be used in the child component
+
 /**
  * Main GarageList node, uses Bootstrap's list-group
  */
 var GarageList = React.createClass({
+
+  propTypes: {
+    vehicleModels: React.PropTypes.instanceOf(Backbone.Collection)
+  },
 
   getInitialState: function () {
     return {
@@ -61,6 +68,11 @@ var GarageList = React.createClass({
  * of vehicles that match that description. First by make, then model.
  */
 GarageList.SearchBar = React.createClass({
+
+  propTypes: {
+    filterText: React.PropTypes.string.isRequired,
+    onUserInput: React.PropTypes.func.isRequired
+  },
 
   render: function () {
     return (

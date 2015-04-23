@@ -1,8 +1,13 @@
-var React = require("react");
+var React    = require("react");
+var Backbone = require("backbone");
 
 // TODO: Redesign dis b&*%$
 
 var SingleVehicle = React.createClass({
+
+  propTypes: {
+    vehicleModel: React.PropTypes.instanceOf(Backbone.Model).isRequired
+  },
 
   render: function () {
     var vehicle = this.props.vehicleModel.attributes;
