@@ -1,6 +1,5 @@
 var React    = require("react");
 var _        = require("lodash");
-var Backbone = require("backbone");
 
 var randomInt = function (min, max) {
   return Math.floor(Math.random() * max + min);
@@ -14,7 +13,6 @@ var randomInt = function (min, max) {
 var GarageList = React.createClass({
 
   propTypes: {
-    vehicleModels: React.PropTypes.instanceOf(Backbone.Collection)
   },
 
   getInitialState: function () {
