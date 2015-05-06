@@ -1,7 +1,7 @@
 module.exports = {
   context: __dirname + '/assets',
   entry: {
-    'default-bundle': './js/app.js'
+    'app': './js/app.js'
   },
   output: {
     path: __dirname + '/dist',
