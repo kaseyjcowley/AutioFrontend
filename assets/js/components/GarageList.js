@@ -8,10 +8,7 @@ let GarageListStore = require('../stores/GarageListStore');
  */
 let GarageList = React.createClass({
 
-  onHasBeenSearched(searchText) {
-    this.setState({
-      searchText: searchText
-    });
+  propTypes: {
   },
 
   getInitialState() {
@@ -33,8 +30,18 @@ let GarageList = React.createClass({
   render() {
     return (
       <div className="col-sm-6">
-        <GarageList.SearchBar />
-        <div className="well" style={{margin: '10px 0'}}>Search text entered: <code>{(this.state.searchText) ? this.state.searchText : 'None'}</code></div>
+        <GarageList.SearchBar searchText={this.state.searchText} />
+        <div style={{marginTop: 10}}>
+          <div className="list-group">
+            {this.state.vehicles.map((vehicle) =>
+            <a href="#" className="list-group-item">
+              <h4 className="list-group-item-heading">
+                {vehicle.year} {vehicle.make} {vehicle.model}
+              </h4>
+            </a>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
@@ -47,28 +54,25 @@ let GarageList = React.createClass({
  */
 GarageList.SearchBar = React.createClass({
 
-  mixins: [Reflux.listenTo(GarageListStore, 'onUpdateSearchText')],
+  propTypes: {
+    searchText: React.PropTypes.string
+  },
 
-  getInitialState() {
+  getDefaultProps() {
     return {
       searchText: ''
     };
   },
 
-  onUpdateSearchText(searchText) {
-    this.setState({
-      searchText: searchText
-    });
-  },
-
-  render: function () {
+  render() {
     return (
       <input
         type="text"
         className="form-control"
-        value={this.state.searchText}
-        onChange={(e) => GarageListActions.updateSearchText(e.target.value)}
-        placeholder="Search vehicles..."/>
+        value={this.props.searchText}
+        onChange={(e) => GarageListActions.searchVehicles(e.target.value)}
+        placeholder="Search vehicles..."
+        />
     );
   }
 
@@ -80,7 +84,7 @@ GarageList.SearchBar = React.createClass({
  */
 GarageList.Vehicle = React.createClass({
 
-  render: function () {
+  render() {
   }
 
 });
