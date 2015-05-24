@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/kchunterdeluxe/AutioFrontend.git"
   },
-  "author": "Kasey H.",
+  "author": "Kasey C.",
   "license": "ISC",
   "dependencies": {
     "alt": "^0.16.5",
@@ -26,8 +26,8 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/webpack",
-    "develop": "./node_modules/.bin/webpack --watch --verbose & npm run server",
+    "develop": "./node_modules/.bin/webpack --watch --verbose & npm run browser-sync",
     "lint": "./node_modules/.bin/eslint ./assets; true;",
-    "server": "./node_modules/.bin/browser-sync start --config='./bs-config.js'"
+    "browser-sync": "./node_modules/.bin/browser-sync start --config='./bs-config.js'"
   }
 }
