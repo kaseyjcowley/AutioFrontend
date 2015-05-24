@@ -1,7 +1,9 @@
-let Reflux = require('reflux');
+let alt = require('../alt');
 
-let GarageListActions = Reflux.createActions([
-  'updateSearchText'
-]);
+let GarageListActions = {
+  searchVehicles(searchText) {
+    this.dispatch(searchText);
+  }
+};
 
-module.exports = GarageListActions;
+module.exports = alt.createActions(GarageListActions);

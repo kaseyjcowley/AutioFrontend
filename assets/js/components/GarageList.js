@@ -1,5 +1,4 @@
 let React  = require('react');
-let Reflux = require('reflux');
 
 let GarageListActions = require('../actions/GarageListActions');
 let GarageListStore = require('../stores/GarageListStore');
@@ -7,8 +6,7 @@ let GarageListStore = require('../stores/GarageListStore');
 /**
  * Main GarageList node, uses Bootstrap's list-group
  */
-var GarageList = React.createClass({
-  mixins: [Reflux.listenTo(GarageListStore, 'onHasBeenSearched')],
+let GarageList = React.createClass({
 
   onHasBeenSearched(searchText) {
     this.setState({
@@ -16,16 +14,23 @@ var GarageList = React.createClass({
     });
   },
 
-  propTypes: {
+  getInitialState() {
+    return GarageListStore.getState();
   },
 
-  getInitialState: function () {
-    return {
-      searchText: ''
-    };
+  componentDidMount() {
+    GarageListStore.listen(this.onStoreChange);
   },
 
-  render: function () {
+  componentWillUnmount() {
+    GarageListStore.unlisten(this.onStoreChange);
+  },
+
+  onStoreChange(state) {
+    this.setState(state);
+  },
+
+  render() {
     return (
       <div className="col-sm-6">
         <GarageList.SearchBar />
