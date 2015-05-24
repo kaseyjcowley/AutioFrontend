@@ -1,17 +1,16 @@
 {
   "name": "AutioFrontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "assets/js/app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/kchunterdeluxe/AutioFrontend.git"
   },
-  "author": "Kasey H.",
+  "author": "Kasey C.",
   "license": "ISC",
   "dependencies": {
-    "backbone": "^1.1.2",
-    "jquery": "^2.1.3",
+    "alt": "^0.16.5",
     "lodash": "^3.6.0",
     "react": "^0.13.1"
   },
@@ -26,10 +25,9 @@
     "webpack": "^1.8.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack",
-    "develop": "./node_modules/.bin/webpack --watch --verbose & npm run server",
+    "develop": "./node_modules/.bin/webpack --watch --verbose & npm run browser-sync",
     "lint": "./node_modules/.bin/eslint ./assets; true;",
-    "server": "./node_modules/.bin/browser-sync start --config='./bs-config.js'"
+    "browser-sync": "./node_modules/.bin/browser-sync start --config='./bs-config.js'"
   }
 }
