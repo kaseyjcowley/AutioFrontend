@@ -10,25 +10,54 @@
   ],
 
   "rules": {
+    "no-irregular-whitespace": 2,
+    "no-multi-spaces": 2,
+    "no-shadow": 2,
+    "no-undef": 2,
+    "no-use-before-define": 2,
+    "no-var": 2,
+    "semi": [2, "always"],
+    "curly": [2, "multi"],
+    "eqeqeq": 2,
+    "key-spacing": [2, {"align": "value"}],
+    "radix": 2,
+
     "no-new": 1,
+    "no-unreachable": 1,
+    "no-console": 1,
+    "no-debugger": 1,
+    "no-unused-vars": [1, {"vars": "all", "args": "all"}],
+    "no-alert": 1,
+    "no-else-return": 1,
+    "no-dupe-args": 1,
+    "no-dupe-keys": 1,
+    "camelcase": 1,
+    "eol-last": 1,
+    "dot-notation": 1,
+    "comma-dangle": 1,
+    "quotes": [1, "single"],
+
     "no-multi-spaces": 0,
     "strict": 0,
 
-    "quotes": [1, "single"],
-    "semi": [2, "always"],
-    "curly": [2, "multi"],
-    "no-unused-vars": [1, {"vars": "all", "args": "all"}],
+    "react/jsx-boolean-value": 2,
+    "react/no-did-mount-set-state": 2,
+    "react/no-did-update-set-state": 2,
+    "react/jsx-no-undef": 2,
+    "react/jsx-uses-react": 2,
+    "react/no-unknown-property": 2,
 
-    "react/display-name": 0,
-    "react/jsx-uses-react": 1,
-    "react/no-did-mount-set-state": 1,
-    "react/no-did-update-set-state": 1,
-    "react/no-multi-comp": 0,
     "react/prop-types": [1, { ignore: [children, className] }],
     "react/react-in-jsx-scope": 1,
     "react/self-closing-comp": 1,
     "react/wrap-multilines": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
+    "react/sort-comp": 1,
+
+    "react/no-multi-comp": 0,
+    "react/display-name": 0,
+
+    "react/jsx-quotes": "double"
   },
 
   "env": {
