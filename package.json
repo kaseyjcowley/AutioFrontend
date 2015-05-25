@@ -22,11 +22,14 @@
     "eslint": "^0.19.0",
     "eslint-loader": "^0.10.0",
     "eslint-plugin-react": "^2.1.1",
+    "gulp": "^3.8.11",
+    "gulp-eslint": "^0.12.0",
     "webpack": "^1.8.5"
   },
   "scripts": {
+    "reinstall": "rm -rf ./node_modules && npm install",
     "build": "./node_modules/.bin/webpack",
-    "develop": "./node_modules/.bin/webpack --watch --verbose & npm run browser-sync",
+    "develop": "./node_modules/.bin/webpack --watch --verbose & npm run browser-sync & gulp watch",
     "lint": "./node_modules/.bin/eslint ./assets; true;",
     "browser-sync": "./node_modules/.bin/browser-sync start --config='./bs-config.js'"
   }
