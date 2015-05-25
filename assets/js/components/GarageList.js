@@ -33,13 +33,22 @@ let GarageList = React.createClass({
         <GarageList.SearchBar searchText={this.state.searchText} />
         <div style={{marginTop: 10}}>
           <div className="list-group">
-            {this.state.vehicles.map((vehicle) =>
-            <a href="#" className="list-group-item">
-              <h4 className="list-group-item-heading">
-                {vehicle.year} {vehicle.make} {vehicle.model}
-              </h4>
-            </a>
-            )}
+            {this.state.vehicles.map((vehicle) => {
+              let make = vehicle.links.make;
+              let model = vehicle.links.model;
+
+              return (
+                <a href="#" className="list-group-item">
+                  <h4 className="list-group-item-heading">
+                    {vehicle.year} {make.name} {model.name}
+                  </h4>
+                  <p>
+                    <div><strong>VIN:</strong> {vehicle.vin}</div>
+                    <div><strong>Mileage:</strong> {vehicle.mileage}</div>
+                  </p>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

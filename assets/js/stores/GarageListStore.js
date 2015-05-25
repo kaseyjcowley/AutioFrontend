@@ -23,8 +23,9 @@ class GarageListStore {
     }
 
     this.vehicles = this.vehicles.filter((vehicle) => {
-      let make = vehicle.make.toLowerCase();
-      let model = vehicle.model.toLowerCase();
+      let links = vehicle.links;
+      let make = links.make.name.toLowerCase();
+      let model = links.model.name.toLowerCase();
 
       return make.indexOf(searchText) !== -1 || model.indexOf(searchText) !== -1;
     });
