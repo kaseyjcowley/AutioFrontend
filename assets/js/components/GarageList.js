@@ -1,4 +1,4 @@
-let React  = require('react');
+let React = require('react');
 
 let GarageListActions = require('../actions/GarageListActions');
 let GarageListStore = require('../stores/GarageListStore');
@@ -28,19 +28,28 @@ let GarageList = React.createClass({
   },
 
   render() {
+    let {
+      searchText,
+      vehicles
+    } = this.state;
+
     return (
       <div className="col-sm-6">
-        <GarageList.SearchBar searchText={this.state.searchText} />
+        <GarageList.SearchBar searchText={searchText} />
+
         <div style={{marginTop: 10}}>
           <div className="list-group">
-            {this.state.vehicles.map((vehicle) => {
-              let make = vehicle.links.make;
-              let model = vehicle.links.model;
+            {vehicles.map(vehicle => {
+
+              let {
+                make,
+                model
+              } = vehicle.links;
 
               return (
                 <a href="#" className="list-group-item">
                   <h4 className="list-group-item-heading">
-                    {vehicle.year} {make.name} {model.name}
+                    {`${vehicle.year} ${make.name} ${model.name}`}
                   </h4>
                   <p>
                     <div><strong>VIN:</strong> {vehicle.vin}</div>
@@ -48,6 +57,7 @@ let GarageList = React.createClass({
                   </p>
                 </a>
               );
+
             })}
           </div>
         </div>

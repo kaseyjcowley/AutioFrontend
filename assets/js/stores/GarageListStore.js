@@ -9,12 +9,10 @@ class GarageListStore {
     this.searchText = '';
     this.vehicles = data;
 
-    this.bindListeners({
-      handleSearchVehicles: GarageListActions.SEARCH_VEHICLES
-    });
+    this.bindActions(GarageListActions);
   }
 
-  handleSearchVehicles(searchText) {
+  onSearchVehicles(searchText) {
     this.searchText = searchText;
 
     if (searchText === '') {
@@ -22,12 +20,16 @@ class GarageListStore {
       return;
     }
 
-    this.vehicles = this.vehicles.filter((vehicle) => {
-      let links = vehicle.links;
-      let make = links.make.name.toLowerCase();
-      let model = links.model.name.toLowerCase();
+    this.vehicles = this.vehicles.filter(vehicle => {
+      let {
+        make,
+        model
+      } = vehicle.links;
 
-      return make.indexOf(searchText) !== -1 || model.indexOf(searchText) !== -1;
+      make = make.name.toLowerCase();
+      model = model.name.toLowerCase();
+
+      return make.includes(searchText) || model.includes(searchText);
     });
   }
 
