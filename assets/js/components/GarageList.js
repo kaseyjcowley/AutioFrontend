@@ -47,7 +47,7 @@ let GarageList = React.createClass({
               } = vehicle.links;
 
               return (
-                <a href="#" className="list-group-item">
+                <a key={`${vehicle.year}_${make.name}_${make.model}`} href="#" className="list-group-item">
                   <h4 className="list-group-item-heading">
                     {`${vehicle.year} ${make.name} ${model.name}`}
                   </h4>
