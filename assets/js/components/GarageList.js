@@ -1,15 +1,34 @@
-let React = require('react');
+const React  = require('react');
+const Radium = require('Radium');
+const mui    = require('material-ui');
 
-let GarageListActions = require('../actions/GarageListActions');
-let GarageListStore = require('../stores/GarageListStore');
+const ChildContextMixin = require('../mixins/ChildContextMixin');
+
+const List        = mui.List;
+const ListItem    = mui.ListItem;
+const ListDivider = mui.ListDivider;
+const Paper       = mui.Paper;
+const Avatar      = mui.Avatar;
+const TextField   = mui.TextField;
+
+const GarageListActions = require('../actions/GarageListActions');
+const GarageListStore   = require('../stores/GarageListStore');
+
+const styles = {
+  searchBar: {
+    marginBottom: '10px'
+  }
+};
 
 /**
  * Main GarageList node, uses Bootstrap's list-group
  */
-let GarageList = React.createClass({
+const GarageList = React.createClass({
 
   propTypes: {
   },
+
+  mixins: [ChildContextMixin],
 
   getInitialState() {
     return GarageListStore.getState();
@@ -37,30 +56,41 @@ let GarageList = React.createClass({
       <div className="col-sm-6">
         <GarageList.SearchBar searchText={searchText} />
 
-        <div style={{marginTop: 10}}>
-          <div className="list-group">
-            {vehicles.map(vehicle => {
+        <Paper>
+          <List>
+            {vehicles.map((vehicle, index) => {
 
-              let {
+              const {
                 make,
                 model
               } = vehicle.links;
 
               return (
-                <a key={`${vehicle.year}_${make.name}_${make.model}`} href="#" className="list-group-item">
-                  <h4 className="list-group-item-heading">
-                    {`${vehicle.year} ${make.name} ${model.name}`}
-                  </h4>
-                  <p>
-                    <div><strong>VIN:</strong> {vehicle.vin}</div>
-                    <div><strong>Mileage:</strong> {vehicle.mileage}</div>
-                  </p>
-                </a>
+                <div>
+                  <ListItem
+                    key={`${vehicle.year}_${make.name}_${make.model}`}
+                    primaryText={
+                      <h2>{`${vehicle.year} ${make.name} ${model.name}`}</h2>
+                    }
+                    secondaryText={
+                      <p>
+                        <div><strong>VIN:</strong> {vehicle.vin}</div>
+                        <div><strong>Mileage:</strong> {vehicle.mileage}</div>
+                      </p>
+                    }
+                    leftAvatar={
+                      <Avatar>{make.name[0]}</Avatar>
+                    }
+                  />
+                  {(index < (vehicles.length - 1))
+                    ? <ListDivider />
+                    : null}
+                </div>
               );
 
             })}
-          </div>
-        </div>
+          </List>
+        </Paper>
       </div>
     );
   }
@@ -85,13 +115,13 @@ GarageList.SearchBar = React.createClass({
 
   render() {
     return (
-      <input
-        type="text"
-        className="form-control"
+      <TextField
+        hintText="Search vehicles..."
         value={this.props.searchText}
         onChange={(e) => GarageListActions.searchVehicles(e.target.value)}
-        placeholder="Search vehicles..."
-        />
+        style={styles.searchBar}
+        fullWidth={true}
+      />
     );
   }
 
@@ -108,4 +138,4 @@ GarageList.Vehicle = React.createClass({
 
 });
 
-module.exports = GarageList;
+module.exports = Radium(GarageList);

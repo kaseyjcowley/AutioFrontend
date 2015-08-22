@@ -39,6 +39,7 @@
 
     "no-multi-spaces": 0,
     "strict": 0,
+    "new-cap": 0,
 
     "react/jsx-boolean-value": 2,
     "react/no-did-mount-set-state": 2,
