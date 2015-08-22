@@ -28,10 +28,12 @@
     "expect": "^1.6.0",
     "gulp": "^3.8.11",
     "gulp-eslint": "^0.12.0",
+    "jsdom": "^3.1.2",
     "mocha": "^2.2.5",
     "webpack": "^1.8.5"
   },
   "scripts": {
+    "test": "mocha --recursive --compilers js:babel-core/register ./assets/js/__tests__/*.js",
     "reinstall": "rm -rf ./node_modules && npm install",
     "build": "./node_modules/.bin/webpack",
     "develop": "./node_modules/.bin/webpack --watch --verbose & npm run browser-sync & gulp watch",
