@@ -1,43 +1,50 @@
-let React = require('react/addons');
-let TestUtils = React.addons.TestUtils;
+import React from 'react/addons';
+import * as _ from 'lodash';
+import { expect } from 'chai';
 
-let expect = require('chai').expect;
+const TestUtils = React.addons.TestUtils;
 
-describe('Garagelist', function () {
-  let GarageList = require('../components/GarageList');
-  let component;
+import GarageList from './../components/GarageList';
+import { ListItem } from 'material-ui';
 
-  before('render component', function () {
-    component = TestUtils.renderIntoDocument(<GarageList />);
+describe('<GarageList />', function () {
+
+  const defaultProps = {
+    searchText: '',
+    vehicles: [],
+    searchVehicles: _.noop
+  };
+
+  it('is renderable', function () {
+    const component = React.findDOMNode(
+      TestUtils.renderIntoDocument(<GarageList {...defaultProps} />)
+    );
+
+    expect(component).to.not.equal(null);
   });
 
-  it('renders without failure', function () {
-    expect(component).to.exist;
+  it('renders vehicles', function () {
+    const vehicles = [
+      {
+        year: 2015,
+        mileage: 10,
+        vin: 'abc123',
+        links: {
+          make: {id: 1, name: 'Ford'}, 
+          model: {id: 2, name: 'Mustang'}
+        }
+      }
+    ];
+    const component = TestUtils.renderIntoDocument(
+      <GarageList 
+        {...defaultProps}
+        vehicles={vehicles}
+        />
+    );
+
+    const vehiclesNodes = TestUtils.scryRenderedComponentsWithType(component, ListItem);
+
+    expect(vehiclesNodes.length).to.equal(vehicles.length);
   });
 
-  it('loads with vehicle objects in state', function () {
-    let state = component.state;
-
-    expect(state.vehicles)
-      .to.exist
-      .to.be.an.instanceof(Array);
-
-    if (state.vehicles.length > 0)
-      state.vehicles.map(vehicle => expect(vehicle).to.be.an('object'));
-  });
-
-  it('renders a search bar', function () {
-    let searchBar = TestUtils.findRenderedComponentWithType(component, GarageList.SearchBar);
-
-    // Expect it to exist.
-    expect(searchBar).to.exist;
-
-    // Expect it to have props of "searchText"
-    expect(searchBar.props).to.have.property('searchText');
-    expect(searchBar.props.searchText).to.equal('');
-
-    // Expect it to handle input
-    TestUtils.Simulate.change(searchBar.getDOMNode(), {target: {value: 'hello'}});
-    expect(searchBar.props.searchText).to.equal('hello');
-  });
 });
