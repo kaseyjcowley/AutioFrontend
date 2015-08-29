@@ -11,7 +11,6 @@ const Paper       = mui.Paper;
 const Avatar      = mui.Avatar;
 const TextField   = mui.TextField;
 
-const GarageListActions = require('../actions/GarageListActions');
 const GarageListStore   = require('../stores/GarageListStore');
 
 const styles = {
@@ -26,6 +25,9 @@ const styles = {
 const GarageList = React.createClass({
 
   propTypes: {
+    searchText: React.PropTypes.string,
+
+    searchVehicles: React.PropTypes.func.isRequired
   },
 
   mixins: [ChildContextMixin],
@@ -48,13 +50,19 @@ const GarageList = React.createClass({
 
   render() {
     let {
-      searchText,
       vehicles
     } = this.state;
 
+    let {
+      searchText
+    } = this.props;
+
     return (
       <div className="col-sm-6">
-        <GarageList.SearchBar searchText={searchText} />
+        <GarageList.SearchBar
+          searchText={searchText}
+          onSearchVehicles={this.props.searchVehicles}
+          />
 
         <Paper>
           <List>
@@ -104,7 +112,9 @@ const GarageList = React.createClass({
 GarageList.SearchBar = React.createClass({
 
   propTypes: {
-    searchText: React.PropTypes.string
+    searchText: React.PropTypes.string,
+
+    onSearchVehicles: React.PropTypes.func.isRequired
   },
 
   getDefaultProps() {
@@ -118,7 +128,7 @@ GarageList.SearchBar = React.createClass({
       <TextField
         hintText="Search vehicles..."
         value={this.props.searchText}
-        onChange={(e) => GarageListActions.searchVehicles(e.target.value)}
+        onChange={(e) => this.props.onSearchVehicles(e.target.value)}
         style={styles.searchBar}
         fullWidth={true}
       />
@@ -138,4 +148,4 @@ GarageList.Vehicle = React.createClass({
 
 });
 
-module.exports = Radium(GarageList);
+export default Radium(GarageList);

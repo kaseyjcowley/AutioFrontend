@@ -1,5 +1,15 @@
-let React = require('react');
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { rootReducer } from './reducers';
 
-let GarageList = require('./components/GarageList');
+import GarageListContainer from './containers/GarageListContainer';
 
-React.render(<GarageList />, document.body);
+let store = createStore(rootReducer);
+
+React.render(
+  <Provider store={store}>
+    {() => <GarageListContainer />}
+  </Provider>,
+  document.body
+);
