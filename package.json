@@ -10,7 +10,6 @@
   "author": "Kasey C.",
   "license": "ISC",
   "dependencies": {
-    "alt": "^0.16.5",
     "lodash": "^3.6.0",
     "material-ui": "^0.10.4",
     "radium": "^0.13.7",

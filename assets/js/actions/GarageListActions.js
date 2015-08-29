@@ -1,9 +1,6 @@
-let alt = require('../alt');
-
-let GarageListActions = {
-  searchVehicles(searchText) {
-    this.dispatch(searchText);
-  }
-};
-
-module.exports = alt.createActions(GarageListActions);
+export function searchVehicles(searchText) {
+  return {
+    type: 'SEARCH_VEHICLES',
+    searchText
+  };
+}
