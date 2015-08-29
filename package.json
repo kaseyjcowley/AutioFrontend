@@ -15,12 +15,15 @@
     "material-ui": "^0.10.4",
     "radium": "^0.13.7",
     "react": "^0.13.1",
-    "react-tap-event-plugin": "^0.1.7"
+    "react-redux": "^1.0.0",
+    "react-tap-event-plugin": "^0.1.7",
+    "redux": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^5.1.10",
     "babel-eslint": "^3.0.1",
     "babel-loader": "^5.0.0",
+    "babel-runtime": "^5.8.20",
     "browser-sync": "^2.6.4",
     "chai": "^3.0.0",
     "eslint": "^0.21.0",
