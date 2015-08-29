@@ -11,8 +11,6 @@ const Paper       = mui.Paper;
 const Avatar      = mui.Avatar;
 const TextField   = mui.TextField;
 
-const GarageListStore   = require('../stores/GarageListStore');
-
 const styles = {
   searchBar: {
     marginBottom: '10px'
@@ -25,43 +23,26 @@ const styles = {
 const GarageList = React.createClass({
 
   propTypes: {
-    searchText: React.PropTypes.string,
-
+    searchText: React.PropTypes.string.isRequired,
+    vehicles: React.PropTypes.array.isRequired,
     searchVehicles: React.PropTypes.func.isRequired
   },
 
   mixins: [ChildContextMixin],
 
-  getInitialState() {
-    return GarageListStore.getState();
-  },
-
-  componentDidMount() {
-    GarageListStore.listen(this.onStoreChange);
-  },
-
-  componentWillUnmount() {
-    GarageListStore.unlisten(this.onStoreChange);
-  },
-
-  onStoreChange(state) {
-    this.setState(state);
-  },
-
   render() {
-    let {
-      vehicles
-    } = this.state;
 
     let {
-      searchText
+      searchText,
+      vehicles,
+      searchVehicles
     } = this.props;
 
     return (
       <div className="col-sm-6">
         <GarageList.SearchBar
           searchText={searchText}
-          onSearchVehicles={this.props.searchVehicles}
+          onSearchVehicles={searchVehicles}
           />
 
         <Paper>
@@ -113,14 +94,11 @@ GarageList.SearchBar = React.createClass({
 
   propTypes: {
     searchText: React.PropTypes.string,
-
     onSearchVehicles: React.PropTypes.func.isRequired
   },
 
-  getDefaultProps() {
-    return {
-      searchText: ''
-    };
+  _handleOnChange(searchText) {
+    return this.props.onSearchVehicles(searchText);
   },
 
   render() {
@@ -128,7 +106,7 @@ GarageList.SearchBar = React.createClass({
       <TextField
         hintText="Search vehicles..."
         value={this.props.searchText}
-        onChange={(e) => this.props.onSearchVehicles(e.target.value)}
+        onChange={e => this._handleOnChange(e.target.value)}
         style={styles.searchBar}
         fullWidth={true}
       />
